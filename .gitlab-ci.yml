@@ -1,0 +1,14 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.41.1-jammy
+  parallel: 7
+  script:
+    - npm ci
+    - npx playwright install --with-deps
+    - npm test
+  artifacts:
+    paths:
+      - playwright-report/
